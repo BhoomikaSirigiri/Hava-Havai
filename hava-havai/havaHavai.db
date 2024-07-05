@@ -1,0 +1,31 @@
+CREATE TABLE Country (
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    name TEXT,
+    country_code_two TEXT,
+    country_code_three TEXT,
+    mobile_code INTEGER,
+    continent_id INTEGER
+);
+
+CREATE TABLE City (
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    name TEXT,
+    country_id INTEGER,
+    is_active BOOLEAN,
+    lat REAL,
+    long REAL,
+    FOREIGN KEY (country_id) REFERENCES Country(id)
+);
+
+CREATE TABLE Airport (
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    icao_code TEXT,
+    iata_code TEXT,
+    name TEXT,
+    type TEXT,
+    latitude_deg REAL,
+    longitude_deg REAL,
+    elevation_ft INTEGER,
+    city_id INTEGER,
+    FOREIGN KEY (city_id) REFERENCES City(id)
+);
